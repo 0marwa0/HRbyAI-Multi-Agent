@@ -1,0 +1,18 @@
+{
+  "name": "hrbyai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/core": "^1.1.1",
+    "@langchain/langgraph": "^1.0.2",
+    "@faker-js/faker": "^9.3.0",
+    "pdfkit": "^0.17.2"
+  }
+}
