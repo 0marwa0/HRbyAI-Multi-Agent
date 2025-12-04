@@ -24,42 +24,47 @@ This system implements **8 specialized HR agents** that work together in a coord
 ### Agent Workflows
 
 #### **Recruitment Pipeline** (Agents 1-5)
+
 ```
-Resume Arrives → Resume Screener (1) → [pass] → Interview Scheduler (2) 
+Resume Arrives → Resume Screener (1) → [pass] → Interview Scheduler (2)
 → Interviewer Bot (3) → [hire] → Offer Maker (4) → Onboarding Agent (5)
 ```
 
 #### **Leave Management** (Agent 6)
+
 ```
 Employee Requests Leave → Leave Manager (6) → Approve/Deny based on balance
 ```
 
 #### **Payroll Processing** (Agent 7)
+
 ```
 End of Month Trigger → Payroll Agent (7) → Generate payslip PDF
 Termination Trigger → Payroll Agent (7) → Generate final payout
 ```
 
 #### **Employee Termination** (Agent 8 → 7)
+
 ```
-Terminate Command → Exit Agent (8) → Generate termination letter 
+Terminate Command → Exit Agent (8) → Generate termination letter
 → Trigger Payroll Agent (7) → Final payout
 ```
 
 ## Key LangGraph Features Demonstrated
 
-- **Conditional Routing** - Router node analyzes input and directs to appropriate agent  
-- **Shared State** - All agents access centralized employee database  
-- **Agent-to-Agent Communication** - Exit Agent automatically triggers Payroll Agent  
-- **State Annotations** - Proper state management with reducers and defaults  
-- **Graph Compilation** - Nodes, edges, and conditional routing compiled into executable workflow  
-- **Parallelism Potential** - Architecture supports parallel agent execution  
-- **Cycles & Triggers** - Support for recurring events (monthly payroll, etc.)  
+- **Conditional Routing** - Router node analyzes input and directs to appropriate agent
+- **Shared State** - All agents access centralized employee database
+- **Agent-to-Agent Communication** - Exit Agent automatically triggers Payroll Agent
+- **State Annotations** - Proper state management with reducers and defaults
+- **Graph Compilation** - Nodes, edges, and conditional routing compiled into executable workflow
+- **Parallelism Potential** - Architecture supports parallel agent execution
+- **Cycles & Triggers** - Support for recurring events (monthly payroll, etc.)
 - **Observability** - Message tracking for debugging production workflows
 
 ## Technical Architecture
 
 ### State Management
+
 ```javascript
 HRStateAnnotation = {
   employee_id: employee identifier
@@ -72,6 +77,7 @@ HRStateAnnotation = {
 ```
 
 ### Graph Structure
+
 - **Entry Point**: Router Node
 - **Nodes**: 4 specialized agents (router, leave_manager, exit_agent, payroll_agent)
 - **Edges**: Conditional routing based on state.nextAgent
@@ -88,6 +94,7 @@ HRStateAnnotation = {
 ## Usage
 
 ### Commands
+
 ```bash
 # Request leave
 "I need 3 days off"
@@ -105,12 +112,14 @@ Employee ID: jane_smith
 ```
 
 ### Running the System
+
 ```bash
 npm install
 node index.js
 ```
 
 ## Sample Employees
+
 - **john_doe**: John Doe (15 days leave, $5000 salary)
 - **jane_smith**: Jane Smith (20 days leave, $6000 salary)
 
@@ -132,5 +141,3 @@ node index.js
 - **Faker.js** - Test data generation (future use)
 
 ---
-
-*This project showcases the power of LangGraph for building production-grade, multi-agent AI systems with complex workflow orchestration.*
